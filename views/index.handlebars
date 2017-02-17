@@ -1,71 +1,66 @@
 
-<header class="text-center">
-<div class="jumbotron mainBanner">
-<h1>Munch a Burger!</h1>
+<div class="header">
+    <div class="row">
+        <div class="col-xs-12 text-center" id="top-bar">
+            <img src="../assets/img/lgburger.jpg" alt="burger" />
+            <h1> Eat-Da-Burger! </h1>
+        </div>
+        <br>
+        <div class="container text-center">
+        <div class="burger-container">
+        <div class="row main">
+        <div class="col-md-6 col-sx-12">
+        <h1> Burgers You've Made</h1>
+            {{#each burgers}}
+             {{#unless this.devoured}}
+            <div class="row burgers">
+                <div class="col-xs-9 burger">
+                    <h2>{{this.burger_name}}</h2>
+                </div>
+                <div class="col-xs-3">
+                    <form action="burgers/update/devour/{{this.id}}?_method=PUT" method="POST">
+                        <button class="btn btn-success" type="submit" style="float:right">DEVOUR IT!</button>
+                    </form>
+                </div>
+            </div>
+            <hr class="break"> 
+            {{/unless}}
+           {{/each}}
+        </div>
+        <div class="col-md-6 col-xs-12">
+            <h1> Devoured Burgers</h1> 
+            {{#each burgers}} 
+            	{{#if this.devoured}}
+            	<div class="row burgers">
+                <div class="col-xs-6 burger">
+                    <h2>{{this.burger_name}}</h2>
+                </div>
+         	    <div class="col-xs-6">
+  						<form action="burgers/delete/{{this.id}}?_method=DELETE " method="POST">
+                  <button class="btn btn-danger btn-sm " type="submit">DELETE!</button>
+                </form>
+              </div>
+            </div>
+  		 <hr class="break">
+            {{/if}}
+          {{/each}}
+      </div>
+    </div>
+	<div class="row bottom ">
+	<h1> Add a Burger</h1>
+		<form class="form-inline" action="burgers/create" method="POST">
+        <div class="form-group">
+          <label for="ca"><h4>Burger Name:</h4></label>
+          <input type="text" id="ca" name="name" class="form-control" required>
+        </div>
+        <button class="btn btn-success" type="submit"><i class="fa fa-plus" aria-hidden="true"></i>Add Burger</button>
+      </form>
+			<p>Enter a burger you want to eat Click the Button.</p>
+		</div>
+	</div>
 </div>
-</header>
-<main>
-<div class="container text-center">
-  <div class="burger-container">
-    <div class="row main">
-      <div class="col-md-6 col-xs-12">
-
-  		{{#each burgers}}
-   		 {{#unless this.devoured}}
-
-     		<div class="row burgers">
-    		<div class="col-xs-9 burger">
-       		 {{this.burger}}
-			</div>
-			<div class="col-xs-3">
-       		 <form action="burgers/update/devour/{{this.id}}?_method=PUT" method="POST">
-          		<input type="hidden" name="devoured" value="true">
-         		 <button type="submit" style="float:right">MUNCH IT!</button>
-        		</form>
-        	</div>
-        	</div>
-         {{/unless}}
-  		{{/each}}
-  		</div>
-
-  		<div class="col-md-6 col-xs-12"
-  		{{#each burgers}}
-   		 {{#if this.devoured}}
-      	<div class="row burgers">
-      	<div class="col-xs-6 burger">
-        {{this.burger}}
-        </div>
-        <div class="col-xs-6 burger">
-        <h2>{{this.burger}}</h2>
-        </div>
-        <form action="/{{this.id}}?_method=PUT" method="POST">
-          <input type="hidden" name="devoured" value="false">
-          <button type="submit">Empty!</button>
-        </form>
-        </div>
-
-        {{> burgers/delete-burger}}
-      
-    {{/if}}
-  {{/each}}
-  </div>
-  </div>
 
 
-<form class="create-update-form" action="/" method="POST">
-
-  <div class="form-group">
-    <label for="ca">burger:</label>
-    <input type="text" id="ca" name="burger">
-  </div>
-	<button type="submit">Submit</button>
-	<p>Enter a burger you want to eat & Click the "Submit" button. </p>
-  <div class="form-group">
-  <br>
-    <label for="devoured">Devoured?</label><br>
-    <input type="radio" name="devoured" value="1" checked> Devoured!<br>
-    <input type="radio" name="devoured" value="0"> Empty
-  </div>
 
   
-</form>
+

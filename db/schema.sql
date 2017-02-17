@@ -7,14 +7,15 @@
 -- devoured: a boolean
 -- date: a timestamp
 -- SELECT CURRENT_TIMESTAMP
-
-CREATE DATABASE burgermunchn_db;
-USE burgermunchn_db;
+ 
+CREATE DATABASE burgeryummy_db;
+USE burgeryummy_db;
 CREATE TABLE burgers
 (
-	id int NOT NULL AUTO_INCREMENT,
-	burger varchar(50) NOT NULL,
-	devoured BOOLEAN DEFAULT false,
+	id INT (11) AUTO_INCREMENT NOT NULL,
+	burger_name VARCHAR(255) NOT NULL,
+	devoured BOOLEAN NOT NULL DEFAULT '0',
+	date_id TIMESTAMP,
 	-- date datetime NOT NULL DEFAULT NOW()
 	PRIMARY KEY (id)
 );

@@ -31,8 +31,14 @@ function objToSql(ob) {
 
 // Object for all our SQL statement functions.
 var orm = {
-  all: function(tableInput, cb) {
-    var queryString = "SELECT * FROM " + tableInput + ";";
+	selectWhere: function(tableInput, colToSearch, valOfCol) {
+        var queryString = 'SELECT * FROM ' + tableInput + ' WHERE ' + colToSearch + ' = ?';
+         connection.query(queryString, [valOfCol], function(err, result) {
+            return result;
+        });
+     },
+  selectAll: function(tableInput, cb) {
+    var queryString = "SELECT * FROM " + tableInput + ';'
     connection.query(queryString, function(err, result) {
       if (err) {
         throw err;
@@ -40,7 +46,7 @@ var orm = {
       cb(result);
     });
   },
-  create: function(table, cols, vals, cb) {
+  insertOne: function(table, cols, vals, cb) {
     var queryString = "INSERT INTO " + table;
 
     queryString += " (";
@@ -59,14 +65,13 @@ var orm = {
       cb(result);
     });
   },
-  // An example of objColVals would be {name: panther, sleepy: true}
-  update: function(table, objColVals, condition, cb) {
+  updateOne: function(table, col_name, burger_id, cb) {
     var queryString = "UPDATE " + table;
 
     queryString += " SET ";
-    queryString += objToSql(objColVals);
-    queryString += " WHERE ";
-    queryString += condition;
+    queryString += col_name + "=1";
+    queryString += " WHERE id=";
+    queryString += burger_id;
 
     console.log(queryString);
     connection.query(queryString, function(err, result) {
@@ -77,10 +82,10 @@ var orm = {
       cb(result);
     });
   },
-  delete: function(table, condition, cb) {
+  deleteOne: function(table, burger_id, cb) {
     var queryString = "DELETE FROM " + table;
-    queryString += " WHERE ";
-    queryString += condition;
+    queryString += " WHERE id = ";
+    queryString += burger_id;
 
     connection.query(queryString, function(err, result) {
       if (err) {

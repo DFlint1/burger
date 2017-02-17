@@ -1,5 +1,26 @@
+/*#main{
+	background-image: url("../img/lgburger.jpg");
+	background position: top center;
+	background-size: contain;
+}
+*/
+body {
+	width: 99%
+	height: 900px;
+	background-color:#ffcc66;
+	}
+
+img {
+	box-sizing: border-box;
+	border: 0;
+	vertical-align: middle;
+	width: 153px;
+	height: 177px;
+	
+	}
+
 li {
-  background: #FAEBD7;
+  background: #ffcc66;
   margin: 5px;
   padding: 5px;
 }
@@ -9,11 +30,15 @@ li {
 }
 
 .create-update-form {
-  background: aqua;
+  background: #bc8f8f;
   margin: 5px;
   padding: 5px;
 }
 
 .form-group {
   margin-bottom: 5px;
+}
+.text-enter-button {
+	vertical-align: middle;
+
 }

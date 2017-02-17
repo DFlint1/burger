@@ -6,24 +6,29 @@
 var orm = require("../config/orm.js");
 
 var burger = {
-  all: function(cb) {
-    orm.all("burgers", function(res) {
+	selectWhere: function(burgerName,cb){
+		orm.selectWhere('burgers','burger_name', burgerName,function(res){
+			cb(res)
+		}); 
+	}, 
+  insertOne: function(col,name,cb) {
+  	orm.insertOne('burgers',col,name,function(res){
       cb(res);
     });
   },
-  // The variables cols and vals are arrays.
-  create: function(cols, vals, cb) {
-    orm.create("burgers", cols, vals, function(res) {
+  selectAll: function(cb){
+		//select all function used to load display with DB data from table burgers.
+		orm.selectAll('burgers',function(res){
+			cb(res);
+		});
+	},
+  updateOne: function(table,col,id,cb) {
+    orm.updateOne("burgers",col,id, function(res) {
       cb(res);
     });
   },
-  update: function(objColVals, condition, cb) {
-    orm.update("burgers", objColVals, condition, function(res) {
-      cb(res);
-    });
-  },
-  delete: function(condition, cb) {
-    orm.delete("burgers", condition, function(res) {
+  deleteOne: function(table,id,cb) {
+    orm.deleteOne("burgers",id, function(res) {
       cb(res);
     });
   }
