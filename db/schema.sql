@@ -12,7 +12,7 @@ CREATE DATABASE burgeryummy_db;
 USE burgeryummy_db;
 CREATE TABLE burgers
 (
-	id INT (11) AUTO_INCREMENT NOT NULL,
+	id Int (11) AUTO_INCREMENT NOT NULL,
 	burger_name VARCHAR(255) NOT NULL,
 	devoured BOOLEAN NOT NULL DEFAULT '0',
 	date_id TIMESTAMP,

@@ -46,24 +46,14 @@ var orm = {
       cb(result);
     });
   },
-  insertOne: function(table, cols, vals, cb) {
-    var queryString = "INSERT INTO " + table;
+  insertOne: function (table, cols, vals, cb) {
+		var queryString = 'INSERT INTO ' + table + '(' + cols + ')' + "VALUES('" + [vals] + "')";
+		console.log(queryString);
 
-    queryString += " (";
-    queryString += cols.toString();
-    queryString += ") ";
-    queryString += "VALUES (";
-    queryString += printQuestionMarks(vals.length);
-    queryString += ") ";
-
-    console.log(queryString);
-
-    connection.query(queryString, vals, function(err, result) {
-      if (err) {
-        throw err;
-      }
-      cb(result);
-    });
+		connection.query(queryString, vals, function (err, result) {
+			if (err) throw err;
+			cb(result);
+		});
   },
   updateOne: function(table, col_name, burger_id, cb) {
     var queryString = "UPDATE " + table;
